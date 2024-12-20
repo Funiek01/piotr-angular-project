@@ -1,0 +1,98 @@
+
+<div class="container my-5 bg-dark" data-bs-theme="dark">
+    <div class="card">
+        <div class="card-body">
+            @if (registrationForm) {
+                <form [formGroup]="registrationForm">
+                    <div class="mb-3">
+                      <label for="first_name" class="form-label">First Name</label>
+                      <input type="text" class="form-control" id="first_name" formControlName="first_name"
+                      [ngClass]="{
+                        'is-invalid':registrationForm.controls['first_name'].invalid && registrationForm.controls['first_name'].dirty,
+                        'is-valid':registrationForm.controls['first_name'].valid}"
+                      >
+                      @if (registrationForm.controls['first_name'].invalid && registrationForm.controls['first_name'].dirty){
+                        <span class="text-danger">First Name is required</span>
+                      }
+                    </div>
+                    <div class="mb-3">
+                      <label for="last_name" class="form-label">Last Name</label>
+                      <input type="text" class="form-control" id="last_name" formControlName="last_name"
+                      [ngClass]="{
+                        'is-invalid':registrationForm.controls['last_name'].invalid && registrationForm.controls['last_name'].dirty,
+                        'is-valid':registrationForm.controls['last_name'].valid}"
+                      >
+                      @if (registrationForm.controls['last_name'].invalid && registrationForm.controls['last_name'].dirty){
+                        <span class="text-danger">Last Name is required</span>
+                      }
+                    </div>
+                    <div class="mb-3">
+                        <label for="username" class="form-label">User Name</label>
+                        <input type="text" class="form-control" id="username" formControlName="username"
+                        [ngClass]="{
+                            'is-invalid':registrationForm.controls['username'].invalid && registrationForm.controls['username'].dirty,
+                            'is-valid':registrationForm.controls['username'].valid}"
+                          >
+                          @if (registrationForm.controls['username'].invalid && registrationForm.controls['username'].dirty){
+                            <span class="text-danger">User name is required</span>
+                          }
+                      </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="email" formControlName="email"
+                        [ngClass]="{
+                            'is-invalid':registrationForm.controls['email'].invalid && registrationForm.controls['email'].dirty,
+                            'is-valid':registrationForm.controls['email'].valid}"
+                          >
+                          @if (registrationForm.controls['email'].invalid && registrationForm.controls['email'].dirty){
+                            <span class="text-danger">Email is required</span>
+                          }
+                      </div>
+                      <div class="mb-3">
+                        <label for="phone" class="form-label">Phone</label>
+                        <input type="text" class="form-control" id="phone" formControlName="phone"
+                        [ngClass]="{
+                            'is-invalid':registrationForm.controls['phone'].invalid && registrationForm.controls['phone'].dirty,
+                            'is-valid':registrationForm.controls['phone'].valid}"
+                          >
+                          @if (registrationForm.controls['phone'].invalid && registrationForm.controls['phone'].dirty){
+                            <span class="text-danger">Phone is required</span>
+                          }
+                      </div>
+                      <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <div class="input-group">
+                        <input [type]="showPassword ? 'text' : 'password'" class="form-control" id="password" formControlName="password"
+                        [ngClass]="{
+                            'is-invalid':registrationForm.controls['password'].invalid && registrationForm.controls['password'].dirty,
+                            'is-valid':registrationForm.controls['password'].valid}"
+                          >
+                          <span class="input-group-text" id="basic-addon2" (click)="togglePassword()"><i [ngClass]="showPassword ? 'fa fa-eye' : 'fa fa-eye-slash'"></i></span>
+                        </div>
+                        @if (registrationForm.controls['password'].invalid && registrationForm.controls['password'].dirty){
+                          <span class="text-danger">Password is required</span>
+                        }
+                      </div>
+                      <div class="mb-3">
+                        <label for="confirm_password" class="form-label">Confirm password</label>
+                        <div class="input-group">
+                        <input [type]="showConfirmPassword ? 'text' : 'password'" class="form-control" id="confirm_password" formControlName="confirm_password"
+                        [ngClass]="{
+                            'is-invalid':registrationForm.controls['confirm_password'].invalid && registrationForm.controls['confirm_password'].dirty,
+                            'is-valid':registrationForm.controls['confirm_password'].valid}"
+                          >
+                          <span class="input-group-text" id="basic-addon2" (click)="toggleConfirmPassword()"><i [ngClass]="showConfirmPassword ? 'fa fa-eye' : 'fa fa-eye-slash'"></i></span>
+                        </div>
+                        @if (registrationForm.controls['confirm_password'].invalid && registrationForm.controls['confirm_password'].dirty){
+                          <span class="text-danger">Confirm password is required</span>
+                        }
+                        @if (registrationForm.hasError('notSame') && registrationForm.controls['confirm_password'].dirty){
+                          <span class="text-danger">Passwords do not match.</span>
+                        }
+                      </div>
+                        <button type="button" class="btn btn-outline-success" (click)="register()" [disabled]="registrationForm.invalid">Register</button>
+                    </form>
+                }
+        </div>
+    </div>
+  </div>

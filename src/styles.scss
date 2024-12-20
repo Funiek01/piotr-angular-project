@@ -1,1 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
+@import "font-awesome/css/font-awesome.css";
+
+
+  .tooltip {
+    position: absolute;
+    &-arrow{
+      position: absolute;
+    }
+  }
+
+
+  body {
+    padding-top: 100px; /* Pushes content below the navbar */
+  }
+
+
+.main-content {
+  margin-top: -100px;
+}
