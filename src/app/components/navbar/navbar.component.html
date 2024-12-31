@@ -4,7 +4,7 @@
         <a class="navbar-brand me-auto" href="#">PR Service</a>
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
         <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5>
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Side Menu</h5>
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
@@ -31,7 +31,10 @@
           </ul>
         </div>
       </div>
-      <a href="" class="login-button">Login</a>
+      <!-- Login Button -->
+      <div class="d-flex g-3 align-items-center">
+        <button type="login" class="btn btn-success btn-lg" style="border-radius: 25px; font-size: medium;" [routerLink]="['/login']" routerLinkActive="active text-primary">Login</button>
+      </div>
       <!-- added pe-0 -->
       <button class="navbar-toggler pe-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

@@ -26,7 +26,7 @@
                           />
                           <label class="form-label" for="full_name">Full Name</label>
                           @if (registrationForm.controls['full_name'].invalid && registrationForm.controls['full_name'].dirty) {
-                            <span class="text-danger">Full Name is required</span>
+                            <span class="text-danger">This is required!</span>
                           }
                         </div>
                       </div>
@@ -46,7 +46,7 @@
                           />
                           <label class="form-label" for="username">User Name</label>
                           @if (registrationForm.controls['username'].invalid && registrationForm.controls['username'].dirty) {
-                            <span class="text-danger">User Name is required</span>
+                            <span class="text-danger">This is required!</span>
                           }
                         </div>
                       </div>
@@ -66,7 +66,7 @@
                           />
                           <label class="form-label" for="email">Your Email</label>
                           @if (registrationForm.controls['email'].invalid && registrationForm.controls['email'].dirty) {
-                            <span class="text-danger">Email is required</span>
+                            <span class="text-danger">This is required!</span>
                           }
                         </div>
                       </div>
@@ -91,7 +91,7 @@
                           </div>
                           <label class="form-label" for="password">Password</label>
                           @if (registrationForm.controls['password'].invalid && registrationForm.controls['password'].dirty) {
-                            <span class="text-danger">Password is required</span>
+                            <span class="text-danger">This is required!</span>
                           }
                         </div>
                       </div>
@@ -134,7 +134,7 @@
                   </div>
                   <p class="text-center text-muted mt-1 mb-0">
                     Already have an account?
-                    <a href="#!" class="fw-bold text-body"><u>Login here</u></a>
+                    <a href="#!" class="fw-bold text-body" [routerLink]="['/login']" routerLinkActive="active text-primary"><u>Login here</u></a>
                   </p>
                 </div>
               </form>
