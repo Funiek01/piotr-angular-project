@@ -11,3 +11,5 @@ export const endpoints = {
 
 export type EndpointKeys = keyof typeof endpoints;
 export type Lambda = (param:any) => string;
+
+// https://test-marketplace-api.labs.techsphere.io/api/user/list
