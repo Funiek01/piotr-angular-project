@@ -14,7 +14,6 @@ import Swal from 'sweetalert2';
     RouterLink,
     CommonModule,
     ReactiveFormsModule,
-
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
@@ -81,10 +80,10 @@ export class LoginComponent {
     },})
   }
 
-  logout(){
-    this.storageService.remove('user');
-    this.storageService.remove('token');
-    this.isLogin = false;
-  }
+  // logout(){ //no need to implement that
+  //   this.storageService.remove('user');
+  //   this.storageService.remove('token');
+  //   this.isLogin = false;
+  // }
 
 }

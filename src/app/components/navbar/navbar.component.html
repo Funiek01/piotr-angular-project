@@ -31,9 +31,15 @@
           </ul>
         </div>
       </div>
+      
       <!-- Login Button -->
       <div class="d-flex g-3 align-items-center">
-        <button type="login" class="btn btn-success btn-lg" style="border-radius: 25px; font-size: medium;" [routerLink]="['/login']" routerLinkActive="active text-primary">Login</button>
+        @if (!isLoggedIn()) {
+          <button type="login" class="btn btn-success btn-lg" style="border-radius: 25px; font-size: medium;" [routerLink]="['/login']" routerLinkActive="active text-primary">Login</button>
+        }
+        @else {
+          <button type="logout" class="btn btn-danger btn-lg" (click)="logout()" style="border-radius: 25px; font-size: medium;" [routerLink]="['/login']" routerLinkActive="active text-primary">Logout <i class="fa fa-power-off"></i></button>
+        }
       </div>
       <!-- added pe-0 -->
       <button class="navbar-toggler pe-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
