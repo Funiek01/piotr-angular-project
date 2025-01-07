@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import Swal from 'sweetalert2';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-registration',
@@ -20,13 +21,14 @@ export class RegistrationComponent {
   showPassword: boolean = false;
   showConfirmPassword: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private router: Router, private apiService: ApiService) {
 
   }
 
   ngOnInit(): void {
     this.registrationForm = this.formBuilder.group({
-      full_name: ['', Validators.required],
+      first_name: ['', Validators.required],
+      last_name: ['', Validators.required],
       username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
@@ -41,10 +43,37 @@ export class RegistrationComponent {
   }
 
   register() {
-        Swal.fire('success', 'Registered successfuly', 'success').then(swalResult => {
-          console.log('Swal result', swalResult);
-        })
-      }
+    this.apiService.request('registration', 'post', this.registrationForm?.value).subscribe({
+      next: (result) => {
+        console.log('Registration successful');
+        if (result) {
+          Swal.fire('Success', 'Registered successfully', 'success').then((swalResult) => {
+            console.log('Swal result', swalResult);
+            if (swalResult.value) {
+              this.router.navigate(['/login']);
+            }
+          });
+        }
+      },
+      error: (error) => {
+        console.error('Registration error:', error);
+        if (error.status === 400) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'User with given credentials already exists!',
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+          });
+        }
+      },
+    });
+  }
+  
 
 
   togglePassword():void{
