@@ -10,26 +10,46 @@
                   <div class="row justify-content-center">
                     <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
                       <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
-                      <!-- Full Name Field -->
+                      <!-- first Name Field -->
                       <div class="d-flex flex-row align-items-center mb-4">
                         <i class="fa fa-user fa-lg me-3 fa-fw"></i>
                         <div class="form-outline flex-fill mb-0">
                           <input
                             type="text"
-                            id="full_name"
+                            id="first_name"
                             class="form-control"
-                            formControlName="full_name"
+                            formControlName="first_name"
                             [ngClass]="{
-                              'is-invalid': registrationForm.controls['full_name'].invalid && registrationForm.controls['full_name'].dirty,
-                              'is-valid': registrationForm.controls['full_name'].valid
+                              'is-invalid': registrationForm.controls['first_name'].invalid && registrationForm.controls['first_name'].dirty,
+                              'is-valid': registrationForm.controls['first_name'].valid
                             }"
                           />
-                          <label class="form-label" for="full_name">Full Name</label>
-                          @if (registrationForm.controls['full_name'].invalid && registrationForm.controls['full_name'].dirty) {
+                          <label class="form-label" for="first_name">First Name</label>
+                          @if (registrationForm.controls['first_name'].invalid && registrationForm.controls['first_name'].dirty) {
                             <span class="text-danger">This is required!</span>
                           }
                         </div>
                       </div>
+                        <!-- Last Name Field -->
+                        <div class="d-flex flex-row align-items-center mb-4">
+                          <i class="fa fa-solid fa-user fa-lg me-3 fa-fw"></i>
+                          <div class="form-outline flex-fill mb-0">
+                            <input
+                              type="text"
+                              id="last_name"
+                              class="form-control"
+                              formControlName="last_name"
+                              [ngClass]="{
+                                'is-invalid': registrationForm.controls['last_name'].invalid && registrationForm.controls['last_name'].dirty,
+                                'is-valid': registrationForm.controls['last_name'].valid
+                               }"
+                            />
+                            <label class="form-label" for="last_name">Last Name</label>
+                            @if (registrationForm.controls['last_name'].invalid && registrationForm.controls['last_name'].dirty) {
+                              <span class="text-danger">This is required!</span>
+                            }
+                          </div>
+                        </div>
                       <!-- Username Field -->
                       <div class="d-flex flex-row align-items-center mb-4">
                         <i class="fa fa-solid fa-user-secret fa-lg me-3 fa-fw"></i>
@@ -119,7 +139,7 @@
                       </div>
                       <!-- Submit Button -->
                       <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                        <button type="submit" class="btn btn-success btn-lg">Register</button>
+                        <button type="submit" class="btn btn-success btn-lg" (click)="register()">Register</button>
                       </div>
                     </div>
                     <!-- Image Section -->
