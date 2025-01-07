@@ -5,6 +5,7 @@ import { RouterLink } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 import { StorageService } from '../../services/storage.service';
 import { PermissionService } from '../../services/permission.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -50,14 +51,34 @@ export class LoginComponent {
 
   login(){
     console.log(this.loginForm);
-    this.apiService.request('login','post', this.loginForm?.value).subscribe(result => {
+    this.apiService.request('login','post', this.loginForm?.value).subscribe({
+      next: (result) => {
       console.log('Succesully logged in'); // message that admin has logged
       if(result){
         this.storageService.set('token', result['token']);
         this.storageService.set('user', result['user']);
         this.isLogin = true;
+        Swal.fire('Success', 'Logged in successfully', 'success').then((swalResult) => {
+          console.log('Swal result', swalResult);
+        });
       }
-    })
+    },
+    error: (error) => {
+      console.error('Registration error:', error);
+       if (error.status === 400) {
+         Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'You provide wrong credentials',
+         });
+      } else {
+         Swal.fire({
+           icon: 'error',
+          title: 'Oops...',
+           text: 'User with given credentials not exists!',
+        });
+      }
+    },})
   }
 
   logout(){
