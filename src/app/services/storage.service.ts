@@ -21,7 +21,6 @@ export class StorageService {
 
   get(key: string) {
     if(!this.isBrowser) return null;
-
     const stringValue: string | null = localStorage.getItem(key);
     if (stringValue) return JSON.parse(stringValue);
   }
