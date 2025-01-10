@@ -16,6 +16,7 @@ import { DTO } from '../../models/dto';
 })
 export class UserListComponent {
   userList: User[]=[];
+  readonly colors = ['#007bff', '#6c757d', '#28a745', '#dc3545', '#ffc107', '#17a2b8'];
 
   constructor(
     public permissionService: PermissionService,
@@ -37,9 +38,8 @@ export class UserListComponent {
     return name[0].toUpperCase();
   }
 
-  getRandomColor(): string {
-    const colors = ['#007bff', '#6c757d', '#28a745', '#dc3545', '#ffc107', '#17a2b8'];
-    return colors[Math.floor(Math.random() * colors.length)];
+  getColor(index: number): string {
+    return this.colors[index % this.colors.length];
   }
 
 }
