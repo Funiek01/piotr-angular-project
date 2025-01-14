@@ -7,4 +7,5 @@ export interface User {
     password: string;
     role: string;
     register_date: string;
+    phone: string;
 }

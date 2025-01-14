@@ -1,16 +1,16 @@
 import { Component, Input } from '@angular/core';
 import { User } from '../../models/user';
 import { PermissionService } from '../../services/permission.service';
-import { StorageService } from '../../services/storage.service';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../../services/api.service';
 import { DTO } from '../../models/dto';
+import { UserDetailsComponent } from "../user-details/user-details.component";
 
 @Component({
   selector: 'app-user-list',
   standalone: true,
-  imports: [RouterLink, CommonModule],
+  imports: [RouterLink, CommonModule, UserDetailsComponent],
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.scss']
 })
