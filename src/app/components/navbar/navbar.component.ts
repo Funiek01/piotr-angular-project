@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LoginComponent } from '../login/login.component';
 import { PermissionService } from '../../services/permission.service';
+import { User } from '../../models/user';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-navbar',
@@ -16,9 +18,16 @@ import { PermissionService } from '../../services/permission.service';
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
-  constructor(private permission:PermissionService){
+  user?: User;
+  constructor(public permission:PermissionService, private storageService: StorageService){
 
   }
+
+  ngOnInit(): void{
+    this.user = this.storageService.get('user')
+
+  }
+
 
   isLoggedIn(): boolean {
     return this.permission.isAuthUser();

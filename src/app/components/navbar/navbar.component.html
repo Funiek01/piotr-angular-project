@@ -12,6 +12,7 @@
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="#">Home</a>
             </li>
+            @if (permission.hasRole(['admin'])) {
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Options
@@ -25,6 +26,12 @@
                 <li><a class="dropdown-item" href="#">Something else here</a></li>
               </ul>
             </li>
+          }
+          @else if (permission.hasRole(['user'])){
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#" [routerLink]="['/edit/', user?._id]">Settings</a>
+            </li>
+          }
             <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="#">About</a>
               </li>
