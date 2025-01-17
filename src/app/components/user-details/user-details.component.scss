@@ -1,0 +1,27 @@
+.gradient-custom-2 {
+    margin: 0;
+    height: auto;
+    background: #fbc2eb;
+    background: -webkit-linear-gradient(to right, rgb(255, 183, 48), rgb(238, 171, 166));
+    background: linear-gradient(to right, rgb(253, 162, 110), rgb(238, 223, 85));
+    background-size: cover;
+  } // Later use - Maybe
+
+  .moving-dog {
+    position: absolute;
+    width: 150px;
+    bottom: 10px;
+    right: -150px;
+    animation: move-dog 15s linear infinite;
+    
+  } // funny dog sniffing page
+  
+  @keyframes move-dog {
+    0% {
+      right: -150px;
+    }
+    100% {
+      right: 100%;
+    }
+  } // funny dog sniffing page
+  

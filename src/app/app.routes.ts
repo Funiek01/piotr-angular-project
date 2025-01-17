@@ -4,6 +4,7 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
+import { EditUserComponent } from './components/edit-user/edit-user.component';
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent},
@@ -11,5 +12,6 @@ export const routes: Routes = [
     { path: 'user-list', component: UserListComponent},
     { path: 'details/:id', component:UserDetailsComponent },
     { path: 'home', component: HomeComponent},
+    { path: 'edit/:id', component:EditUserComponent },
     { path: '**', redirectTo: '/home' },
 ];
