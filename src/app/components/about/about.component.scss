@@ -1,10 +1,6 @@
 .about-section {
-    background: #feada6;
-    background: -webkit-linear-gradient(to right, rgba(254,173,166,0.5), rgba(245,239,239,0.5));
-    background: linear-gradient(to right, rgba(254,173,166,0.5), rgba(245,239,239,0.5));
-    padding: 50px;
-    border-radius: 10px;
-    margin: 30px auto;
+    padding: 30px;
+    margin: auto;
     max-width: 1000px;
 }
 .about-title {
@@ -20,3 +16,17 @@
     background-color: #c98b11;
 }
 
+.background-gradient{
+    background: #feada6;
+    background: -webkit-linear-gradient(to top, rgba(254,173,166,0.5), rgba(245,239,239,0.5));
+    background: linear-gradient(to top, rgba(254,173,166,0.5), rgba(245,239,239,0.5));
+    border-radius: 10px;
+}
+
+.card-zooming{
+    transition: all 0.3s;
+}
+
+.card-zooming:hover {
+    transform: scale(1.15);
+}
