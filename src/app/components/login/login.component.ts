@@ -79,11 +79,4 @@ export class LoginComponent {
       }
     },})
   }
-
-  // logout(){ //no need to implement that
-  //   this.storageService.remove('user');
-  //   this.storageService.remove('token');
-  //   this.isLogin = false;
-  // }
-
 }

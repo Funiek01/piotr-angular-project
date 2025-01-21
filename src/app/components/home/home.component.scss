@@ -1,9 +1,23 @@
-
-
-.background-section{
+.background-section {
     background: url(https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbmR2aWtzMXBqamtsdjhzYmFxOWZwbmtibXIzODI3djV6d2d3Y2MyMyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/JOQrwLQcOrtne8Oyb4/giphy.webp) no-repeat center;
     background-size: cover;
     width: 100%;
     height: 100vh;
-
-}
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .separate {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+  
+    audio {
+      background-color: #222; // Dark mode background
+      border-radius: 8px; // Rounded corners
+      color: #fff; // Text color for dark mode
+      padding: 5px; // Spacing inside the audio controls
+    }
+  }
+  

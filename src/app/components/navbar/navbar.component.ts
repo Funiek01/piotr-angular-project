@@ -5,6 +5,7 @@ import { LoginComponent } from '../login/login.component';
 import { PermissionService } from '../../services/permission.service';
 import { User } from '../../models/user';
 import { StorageService } from '../../services/storage.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-navbar',
@@ -38,4 +39,12 @@ export class NavbarComponent {
     this.permission.storageService.remove('token');
   }
 
+
+  noPermission(): void {
+           Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'You do not have permission, first sign in',
+           });
+        }
 }

@@ -1,9 +1,22 @@
-
 <div class="main-content">
-<section class="background-section">
-  <div class="carousel-caption d-none d-md-block">
-    <h5>Hello!</h5>
-    <p>Sign in if you want to get more options.</p>
-  </div>
+  <section class="background-section">
+    <div class="carousel-caption d-none d-md-block">
+      @if (!isLoggedIn()) {
+      <h5>Hello!</h5>
+      <p>Sign in if you want to get more options.</p>}
+    </div>
+    @if (isLoggedIn()) {
+    <div class="separate">
+      <!-- <audio controls loop>
+        <source src="https://embed.music.apple.com/us/album/can-you-feel-the-love-tonight/1445732923?i=1445733073" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio> -->
+
+      <!-- Prepared if we want to play music but we have to import it directly to project -->
+
+      <iframe allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write" frameborder="0" height="100" style="width:100%;max-width:660px;overflow:hidden;border-radius:10px;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/us/album/hakuna-matata/1445732923?i=1445732931"></iframe>
+    </div>
+  }
   </section>
 </div>
+
