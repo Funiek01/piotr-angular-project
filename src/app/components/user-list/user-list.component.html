@@ -19,43 +19,56 @@
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="row">
           @if (permissionService.hasRole(['admin'])) {
-          @for (item of filterUserList; track $index) {
-            <div class="col-xl-6 mb-4">
-              <div class="card">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="d-flex align-items-center">
-                      <div class="placeholder-circle" [style.background-color]="getColor($index)">
-                        {{ getInitials(item.first_name) }}
-                      </div>
-                      <div class="ms-3">
-                        <p class="fw-bold mb-1">{{ item.first_name }}</p>
-                        <p class="text-muted mb-0">{{ item.email }}</p>
+            @if (filterUserList.length) {
+              @for (item of filterUserList; track $index) {
+                <div class="col-xl-6 mb-4">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center">
+                          <div class="placeholder-circle" [style.background-color]="getColor($index)">
+                            {{ getInitials(item.first_name) }}
+                          </div>
+                          <div class="ms-3">
+                            <p class="fw-bold mb-1">{{ item.first_name }}</p>
+                            <p class="text-muted mb-0">{{ item.email }}</p>
+                          </div>
+                        </div>
+                        <span class="badge rounded-pill badge-success">Active</span>
                       </div>
                     </div>
-                    <span class="badge rounded-pill badge-success">Active</span>
+                    <div
+                      class="card-footer border-0 bg-body-tertiary p-2 d-flex justify-content-around"
+                    >
+                      <a
+                        class="btn btn-link m-0 text-reset"
+                        href="#"
+                        role="button"
+                        [routerLink]="['/edit/', item._id]"
+                        >Edit User<i class="fa fa-pencil ms-2"></i></a
+                      >
+                      <a
+                        class="btn btn-link m-0 text-reset"
+                        role="button"
+                        [routerLink]="['/details/', item._id]"
+                        >Show Details<i class="fa fa-info ms-2"></i></a
+                      >
+                    </div>
                   </div>
                 </div>
-                <div
-                  class="card-footer border-0 bg-body-tertiary p-2 d-flex justify-content-around"
-                >
-                  <a
-                    class="btn btn-link m-0 text-reset"
-                    href="#"
-                    role="button"
-                    [routerLink]="['/edit/', item._id]"
-                    >Edit User<i class="fa fa-pencil ms-2"></i></a
-                  >
-                  <a
-                    class="btn btn-link m-0 text-reset"
-                    role="button"
-                    [routerLink]="['/details/', item._id]"
-                    >Show Details<i class="fa fa-info ms-2"></i></a
-                  >
+              }
+            }
+            @else {
+              <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="text-center">There are no users with this credentials</h5>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          }
+            }
         }
         </div>
       </div>
