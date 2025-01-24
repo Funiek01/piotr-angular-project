@@ -1,73 +1,77 @@
+/*
+There is a lot of things happening. 
+We can also improve with changing the background and add more features. 
+Overall it increases when the window is snall and responsive on every device
+*/
 .navbar {
-    height: 80px;
-    margin: 20px;
+    height: 80px; // Sets navbar height
+    margin: 20px; // Adds margin around the navbar
     border-radius: 16px;
-    padding: 0.5rem;
-    position: fixed;
-    
-}
-
-
-.login-button {
-    background-color: green;
-    color:white;
+    padding: 0.5rem; // Adds padding inside navbar
+    position: fixed; // Fixes navbar at the top of the screen
+  }
+  
+  .login-button {
+    background-color: green; // Default background color
+    color: white; 
     font-size: 14px;
-    padding: 8px 20px;
-    border-radius: 40px;
-    text-decoration:dashed;
-    transition: 0.4s background-color;
-
-}
-
-.login-button:hover {
-    background-color: rgb(116, 189, 116);
-    
-}
-
-.navbar-toggler {
-    border: none;
-    font-size: 1.25rem;
-}
-
-.navbar-toggler:focus, .btn-close:focus {
-    box-shadow: none;
-    outline: none;
-}
-
-.nav-link {
-    color: #666777;
-    font-weight: 500;
-    position: relative;
-}
-
-.nav-link:hover, .nav-link.active{
-    color: #ffffff;
-}
-
-@media( min-width:991px){
-    .nav-link::before{
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 100%;
-        height: 2px;
-        background-color: #099700;
-        visibility: hidden;
-        transition: 0.3s ease-in-out;
-
+    padding: 8px 20px; 
+    border-radius: 40px; // Circular button shape
+    text-decoration: dashed; // Dashed text decoration
+    transition: 0.4s background-color; // Smooth color transition on hover
+  }
+  
+  .login-button:hover {
+    background-color: rgb(116, 189, 116); // Lighter green on hover
+  }
+  
+  .navbar-toggler {
+    border: none; // Removes border
+    font-size: 1.25rem; // Sets font size
+  }
+  
+  .navbar-toggler:focus,
+  .btn-close:focus {
+    box-shadow: none; // Removes focus shadow
+    outline: none; // Removes focus outline
+  }
+  
+  .nav-link {
+    color: #666777; // Default link color
+    font-weight: 500; // Medium font weight
+    position: relative; // Allows pseudo-elements
+  }
+  
+  .nav-link:hover,
+  .nav-link.active {
+    color: #ffffff; // Highlight color for active/hovered links
+  }
+  
+  @media (min-width: 991px) {
+    .nav-link::before {
+      content: ""; // Creates a pseudo-element for underline effect
+      position: absolute; // Positions underline relative to the link
+      bottom: 0; // Aligns underline to bottom of the link
+      left: 50%; // Centers the underline
+      transform: translateX(-50%); // Centers the underline
+      width: 100%; // Sets initial width
+      height: 2px; // Thickness of the underline
+      background-color: #099700; // Underline color
+      visibility: hidden; // Hides underline by default
+      transition: 0.3s ease-in-out; // Smooth transition for visibility
     }
-
-    .nav-link:hover::before, .nav-link.active::before{
-        width: 100%;
-        visibility: visible;
+  
+    .nav-link:hover::before,
+    .nav-link.active::before {
+      width: 100%; // Expands underline width
+      visibility: visible; // Makes underline visible
     }
-}
-
-.navbar-brand {
-    font-weight: 500;
+  }
+  
+  .navbar-brand {
+    font-weight: 500; // Brand font weight and size
     font-size: 24px;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
-    font-style:bold;
-}
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-style: bold;
+  }
+  

@@ -13,38 +13,41 @@ import Swal from 'sweetalert2';
   imports: [
     RouterLink,
     CommonModule,
-    LoginComponent
+    LoginComponent, // Login component dependency
   ],
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.scss'
+  styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent {
-  user?: User;
-  constructor(public permission:PermissionService, private storageService: StorageService){
+  user?: User; // Holds user data if logged in
 
+  constructor(
+    public permission: PermissionService, // Permission service for role-based features
+    private storageService: StorageService // Service for local storage access
+  ) {}
+
+  ngOnInit(): void {
+    // Load the user data from storage on initialization
+    this.user = this.storageService.get('user');
   }
-
-  ngOnInit(): void{
-    this.user = this.storageService.get('user')
-
-  }
-
 
   isLoggedIn(): boolean {
+    // Checks if the user is authenticated
     return this.permission.isAuthUser();
   }
 
   logout(): void {
+    // Removes user and token data from storage
     this.permission.storageService.remove('user');
     this.permission.storageService.remove('token');
   }
 
-
   noPermission(): void {
-           Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'You do not have permission, first sign in',
-           });
-        }
+    // Displays an alert for unauthorized actions
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'You do not have permission, first sign in',
+    });
+  }
 }

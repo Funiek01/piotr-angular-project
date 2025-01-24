@@ -2,44 +2,59 @@
   <section class="vh-50">
     <div class="container h-100">
 
+      <!-- Search Bar Section -->
       <div class="card mb-4">
         <div class="card-body">
-            <div class="input-group ">
-                <span class="input-group-text" (click)="searchUser()">
-                    <i class="fa fa-search"></i>
-                </span>                
-                <input type="text" class="form-control" placeholder="Search User" [(ngModel)]="searchText">
-                <span class="input-group-text" (click)="clearSearch()">
-                    <i class="fa fa-times"></i>
-                </span>
-            </div>
+          <div class="input-group">
+            <!-- Search Icon -->
+            <span class="input-group-text" (click)="searchUser()">
+              <i class="fa fa-search"></i>
+            </span>
+            <!-- Search Input -->
+            <input type="text" class="form-control" placeholder="Search User" [(ngModel)]="searchText">
+            <!-- Clear Search Icon -->
+            <span class="input-group-text" (click)="clearSearch()">
+              <i class="fa fa-times"></i>
+            </span>
+          </div>
         </div>
-    </div>
+      </div>
 
+      <!-- User List Section -->
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="row">
+          <!-- Check if the user has the required role -->
           @if (permissionService.hasRole(['admin'])) {
+            <!-- Display user cards if the filtered user list is not empty -->
             @if (filterUserList.length) {
+              <!-- Loop through each user in the filtered list -->
               @for (item of filterUserList; track $index) {
                 <div class="col-xl-6 mb-4">
                   <div class="card">
                     <div class="card-body">
+                      <!-- User Info Section -->
                       <div class="d-flex justify-content-between align-items-center">
                         <div class="d-flex align-items-center">
+                          <!-- User Initials Placeholder with Dynamic Background Color -->
                           <div class="placeholder-circle" [style.background-color]="getColor($index)">
                             {{ getInitials(item.first_name) }}
                           </div>
                           <div class="ms-3">
+                            <!-- User Name -->
                             <p class="fw-bold mb-1">{{ item.first_name }}</p>
+                            <!-- User Email -->
                             <p class="text-muted mb-0">{{ item.email }}</p>
                           </div>
                         </div>
+                        <!-- Status Badge -->
                         <span class="badge rounded-pill badge-success">Active</span>
                       </div>
                     </div>
+                    <!-- Card Footer with Action Buttons -->
                     <div
                       class="card-footer border-0 bg-body-tertiary p-2 d-flex justify-content-around"
                     >
+                      <!-- Edit User Link -->
                       <a
                         class="btn btn-link m-0 text-reset"
                         href="#"
@@ -47,6 +62,7 @@
                         [routerLink]="['/edit/', item._id]"
                         >Edit User<i class="fa fa-pencil ms-2"></i></a
                       >
+                      <!-- Show Details Link -->
                       <a
                         class="btn btn-link m-0 text-reset"
                         role="button"
@@ -58,18 +74,18 @@
                 </div>
               }
             }
-            @else {
+            @else { <!-- Display message if no users match the search criteria -->
               <div class="row">
                 <div class="col">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="text-center">There are no users with this credentials</h5>
-                        </div>
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="text-center">There are no users with this credentials</h5>
                     </div>
+                  </div>
                 </div>
-            </div>
+              </div>
             }
-        }
+          }
         </div>
       </div>
     </div>

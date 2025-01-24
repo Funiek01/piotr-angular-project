@@ -19,64 +19,72 @@ import Swal from 'sweetalert2';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-  showPassword:boolean = false;
-  loginForm?:FormGroup;
-  isLogin: boolean = false;
-  user: any;
-
+  showPassword: boolean = false; // Toggles password visibility (for an eye)
+  loginForm?: FormGroup; // Form group for login form
+  isLogin: boolean = false; // Tracks if the user is logged in
+  user: any; // Stores the current user data
 
   constructor(
+    // Injecting required functionalities
     private apiService: ApiService,
     private storageService: StorageService,
-    private formBuilder:FormBuilder,
+    private formBuilder: FormBuilder,
     public permission: PermissionService,
-    
-  ){}
+  ) {}
 
-  ngOnInit():void{
+  ngOnInit(): void {
+    // Initialize the login form with validation rules
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.required],
       password: ['', Validators.required]
-    })
+    });
+
+    // Check if a user is already logged in
     this.user = this.storageService.get('user');
     if (this.user) {
-      this.isLogin=true;
+      this.isLogin = true;
     }
   }
 
-  togglePassword():void{
+  togglePassword(): void {
+    // Toggles the password input field between text and password types
     this.showPassword = !this.showPassword;
   }
 
-  login(){
+  login(): void {
+    // Logs in the user
     console.log(this.loginForm);
-    this.apiService.request('login','post', this.loginForm?.value).subscribe({
+    this.apiService.request('login', 'post', this.loginForm?.value).subscribe({
       next: (result) => {
-      console.log('Succesully logged in'); // message that admin has logged
-      if(result){
-        this.storageService.set('token', result['token']);
-        this.storageService.set('user', result['user']);
-        this.isLogin = true;
-        Swal.fire('Success', 'Logged in successfully', 'success').then((swalResult) => {
-          console.log('Swal result', swalResult);
-        });
-      }
-    },
-    error: (error) => {
-      console.error('Registration error:', error);
-       if (error.status === 400) {
-         Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'You provide wrong credentials',
-         });
-      } else {
-         Swal.fire({
-           icon: 'error',
-          title: 'Oops...',
-           text: 'User with given credentials not exists!',
-        });
-      }
-    },})
+        // Successful login
+        console.log('Successfully logged in');
+        if (result) {
+          // Save token and user details in storage
+          this.storageService.set('token', result['token']);
+          this.storageService.set('user', result['user']);
+          this.isLogin = true;
+          Swal.fire('Success', 'Logged in successfully', 'success').then((swalResult) => {
+            console.log('Swal result', swalResult);
+          });
+        }
+      },
+      error: (error) => {
+        // Handle errors
+        console.error('Login error:', error);
+        if (error.status === 400) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'You provided wrong credentials',
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'User with given credentials does not exist!',
+          });
+        }
+      },
+    });
   }
 }

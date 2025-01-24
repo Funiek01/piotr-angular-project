@@ -10,6 +10,7 @@ export class ApiService {
 
   constructor(private http:HttpClient) { }
 
+   // Fetches the list of users from the API
   getUserList():Observable<any>{
     return this.http.get(endpoints['userList']);
   }
@@ -21,6 +22,7 @@ export class ApiService {
     }else{
       finalUrl = (<Lambda>endpoints[url])(urlParams);
     }
+    // Execute HTTP request based on method (GET, POST)
     return !payload
       ? this.http.request<T>(method, finalUrl)
       : this.http.request<T>(method, finalUrl, {body:payload});

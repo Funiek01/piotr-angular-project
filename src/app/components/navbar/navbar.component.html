@@ -1,61 +1,73 @@
-
 <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top" data-bs-theme="dark">
-    <div class="container-fluid">
-        <a class="navbar-brand me-auto" href="#">PR Service</a>
-      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-        <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Side Menu</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-          <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
-            <li class="nav-item">
-              <a class="nav-link " aria-current="page" href="#">Home</a>
-            </li>
-            @if (permission.hasRole(['admin'])) {
+  <!-- Navbar container -->
+  <div class="container-fluid">
+    <!-- Navbar brand -->
+     <!-- We can also add an icon in the future -->
+    <a class="navbar-brand me-auto" href="#">PR Service</a>
+    <!-- Offcanvas menu for smaller screens -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Side Menu</h5>
+        <!-- Close button for offcanvas menu -->
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <!-- Navigation links -->
+        <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
+          <li class="nav-item">
+            <!-- Link to home -->
+            <a class="nav-link" aria-current="page" href="#">Home</a>
+          </li>
+          <!-- Admin-specific dropdown options -->
+          @if (permission.hasRole(['admin'])) {
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Options
               </a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" [routerLink]="['/user-list']">User List</a></li>
-                <li><a class="dropdown-item" href="#" [routerLink]="['/register']">Add New User</a></li>
+                <li><a class="dropdown-item" [routerLink]="['/register']">Add New User</a></li>
                 <li>
                   <hr class="dropdown-divider">
                 </li>
+                <!-- Placeholder for future options -->
                 <!-- <li><a class="dropdown-item" href="#">Something else here</a></li> -->
               </ul>
             </li>
           }
-          @else if (permission.hasRole(['user'])){
+          @else if (permission.hasRole(['user'])) { <!-- User-specific settings option -->
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="#" [routerLink]="['/edit/', user?._id]">Settings</a>
+              <a class="nav-link" aria-current="page" [routerLink]="['/edit/', user?._id]">Settings</a>
             </li>
           }
-          @else {
+          @else { <!-- Fallback for unauthorized users -->
             <li class="nav-item">
-              <a class="nav-link" aria-current="page"(click)="noPermission()">Settings</a>
+              <a class="nav-link" aria-current="page" (click)="noPermission()">Settings</a>
             </li>
           }
-            <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="#" [routerLink]="['about']">About</a>
-              </li>
-          </ul>
-        </div>
+          <!-- About page link -->
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" [routerLink]="['about']">About</a>
+          </li>
+        </ul>
       </div>
-      
-      <!-- Login Button -->
-      <div class="d-flex g-3 align-items-center">
-        @if (!isLoggedIn()) {
-          <button type="login" class="btn btn-success btn-lg" style="border-radius: 25px; font-size: medium;" [routerLink]="['/login']" routerLinkActive="active text-primary">Login</button>
-        }
-        @else {
-          <button type="logout" class="btn btn-danger btn-lg" (click)="logout()" style="border-radius: 25px; font-size: medium;" [routerLink]="['/login']" routerLinkActive="active text-primary">Logout <i class="fa fa-power-off"></i></button>
-        }
-      </div>
-      <!-- added pe-0 -->
-      <button class="navbar-toggler pe-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
     </div>
-  </nav>
+
+    <!-- Login and Logout buttons -->
+    <div class="d-flex g-3 align-items-center">
+      @if (!isLoggedIn()) {
+        <!-- Login button for unauthenticated users -->
+        <button type="login" class="btn btn-success btn-lg" style="border-radius: 25px; font-size: medium;" [routerLink]="['/login']" routerLinkActive="active text-primary">Login</button>
+      }
+      @else {
+        <!-- Logout button for authenticated users -->
+        <button type="logout" class="btn btn-danger btn-lg" (click)="logout()" style="border-radius: 25px; font-size: medium;" [routerLink]="['/login']" routerLinkActive="active text-primary">Logout <i class="fa fa-power-off"></i></button>
+      }
+    </div>
+
+    <!-- Navbar toggle button for smaller screens -->
+    <button class="navbar-toggler pe-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+</nav>
